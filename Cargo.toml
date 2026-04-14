@@ -1,0 +1,15 @@
+[package]
+name = "ft_linear_regression-rust"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+csv = "1.4.0"
+
+[[bin]]
+name = "predict"
+path = "src/predict/main.rs"
+
+[[bin]]
+name = "train"
+path = "src/train/main.rs"
