@@ -1,5 +1,4 @@
 use csv::ReaderBuilder;
-use serde_json::*;
 use std::{
     env,
     io::Write,
@@ -48,7 +47,6 @@ fn train(data: Vec<Vec<i32>>) -> (f64, f64) {
     theta
 }
 
-
 // function used to put result of the training in a json file
 fn put_json(theta: (f64, f64)) {
     let json_str = serde_json::to_string(&theta).expect("error in json"); // create and fill the string to put in the file
@@ -58,7 +56,7 @@ fn put_json(theta: (f64, f64)) {
 }
 
 fn main() {
-	// the program take one argument : the filename of the dataset
+    // the program take one argument : the filename of the dataset
     if env::args().count() != 2 {
         panic!("./train <data filename>");
     }
