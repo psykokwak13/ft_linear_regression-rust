@@ -5,6 +5,7 @@ use std::{
     time::{Duration, Instant},
 };
 
+const DATA_THETA_FILE: &str = "data_theta.json";
 const TIME_TRAIN: u64 = 5;
 const LEARNING_RATE: f64 = 0.0000000001;
 
@@ -51,7 +52,7 @@ fn train(data: Vec<Vec<i32>>) -> (f64, f64) {
 // function used to put result of the training in a json file
 fn put_json(theta: (f64, f64)) {
     let json_str = serde_json::to_string(&theta).expect("error in json"); // create and fill the string to put in the file
-    let mut file = std::fs::File::create("data_theta.json").expect("error with file"); // create the file. if the file already exist we overwrite in
+    let mut file = std::fs::File::create(DATA_THETA_FILE).expect("error with file"); // create the file. if the file already exist we overwrite in
     file.write_all(json_str.as_bytes()) // write content of json_str in the file
         .expect("writing in json file failed.");
 }
