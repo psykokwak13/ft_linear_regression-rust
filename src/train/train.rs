@@ -27,6 +27,7 @@ fn train(data: Vec<Vec<i32>>) -> (f64, f64) {
             LEARNING_RATE * (1.0 / (data.len() as f64)) * data.iter().map(error).sum::<f64>()
         };
         theta.1 -= {
+            // cost function
             let weighted_error = |x: &Vec<i32>| {
                 (estimate_price(*(x.get(0).expect("number not found")), theta)
                     - *(x.get(1).expect("number not found")) as f64)

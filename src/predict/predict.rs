@@ -11,13 +11,16 @@ fn estimate_price(mileage: i32, theta: (f64, f64)) -> f64 {
 
 // collect datas from our json
 fn get_data_from_json(reset: bool) -> (f64, f64) {
-    let mut file = File::open(DATA_THETA_FILE).expect("error while opening file.");
+    // open the file for reading our values
+    let file = File::open(DATA_THETA_FILE).expect("error while opening file.");
+    let buf = BufReader::new(file);
 
     if reset == true {
-        file.write_all("".as_bytes()).expect("error with file.");
+        // open the file for write the reset
+        let mut file = File::create(DATA_THETA_FILE).expect("error while reset.");
+        file.write_all("[0,0]".as_bytes())
+            .expect("error with file.");
     }
-
-    let buf = BufReader::new(file);
 
     serde_json::from_reader(buf).expect("error with json.")
 }
